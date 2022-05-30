@@ -1,0 +1,15 @@
+plugins {
+    id 'java'
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+    compileOnly fileTree(dir: '../.libs', includes: ['*.jar'])
+}
+
+jar.from configurations.runtimeClasspath.collect(project.&zipTree)
+
+tasks.withType(JavaCompile)*.options*.encoding = "UTF-8"

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane fx:id="root" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/16"
+           xmlns:fx="http://javafx.com/fxml/1" fx:controller="ua.dream.chat.window.main.MainWindowController">
+   <SplitPane dividerPositions="0.3" prefHeight="600.0" prefWidth="800.0">
+      <VBox fx:id="contactsVBox" prefWidth="300.0" styleClass="contacts-panel">
+         <Button mnemonicParsing="false" onAction="#openSettings">
+            <styleClass>
+               <String fx:value="hamburger-icon"/>
+               <String fx:value="icon-button"/>
+            </styleClass>
+         </Button>
+         <Button mnemonicParsing="false" onAction="#addProfile">
+            <styleClass>
+               <String fx:value="profile-add-icon"/>
+               <String fx:value="icon-button"/>
+            </styleClass>
+         </Button>
+
+      </VBox>
+      <VBox fx:id="messagesVBox" styleClass="messages-panel">
+         <StackPane VBox.vgrow="ALWAYS">
+            <Label text="Select a chat to start messaging">
+               <styleClass>
+                  <String fx:value="message-block"/>
+                  <String fx:value="my-message"/>
+               </styleClass>
+            </Label>
+         </StackPane>
+      </VBox>
+   </SplitPane>
+   <Pane fx:id="blockingPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);"
+         styleClass="blocking-pane" visible="false"/>
+</StackPane>

@@ -1,0 +1,5 @@
+rootProject.name = 'dream-chat'
+include 'data'
+include 'client'
+include 'server'
+

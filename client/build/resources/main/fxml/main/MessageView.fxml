@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+
+<?import javafx.scene.image.ImageView?>
+<HBox fx:id="root" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/16"
+      xmlns:fx="http://javafx.com/fxml/1">
+   <opaqueInsets>
+      <Insets/>
+   </opaqueInsets>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+   </padding>
+   <HBox styleClass="message-block">
+      <ImageView fx:id="attachmentImageView" fitHeight="0.0" fitWidth="0.0" />
+      <Label fx:id="messageLabel" styleClass="message"/>
+      <Label fx:id="dateLabel" styleClass="date" translateY="5.0">
+         <HBox.margin>
+            <Insets/>
+         </HBox.margin>
+      </Label>
+   </HBox>
+</HBox>

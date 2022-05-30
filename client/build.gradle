@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    maven { url = 'https://oss.sonatype.org/content/repositories/releases/' }
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+    implementation 'org.fxmisc.flowless:flowless:0.6'
+    implementation project(":data")
+    implementation fileTree(dir: '../.libs', includes: ['*.jar'])
+}
+
+jar {
+    manifest { attributes("Main-Class": "ua.dream.chat.App") }
+}
+jar.from configurations.runtimeClasspath.collect(project.&zipTree)
+
+tasks.withType(JavaCompile)*.options*.encoding = "UTF-8"

@@ -1,0 +1,7 @@
+POST https://pay.starfarm.fun/new
+Content-Type: application/json
+
+{
+  "username": "dargencode",
+  "amount": 15
+}

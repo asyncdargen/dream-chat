@@ -3,6 +3,7 @@ package ua.dream.chat;
 import lombok.Getter;
 import lombok.val;
 import ua.dream.chat.repository.MessageRepository;
+import ua.dream.chat.repository.ThemeRepository;
 import ua.dream.chat.repository.UserRepository;
 import ua.dream.chat.repository.auth.AuthRepository;
 import ua.dream.chat.server.DreamChatServer;
@@ -10,9 +11,13 @@ import ua.dream.chat.util.Database;
 import ua.dream.chat.util.logger.Logger;
 
 import java.util.Scanner;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 public class App {
 
+    @Getter
+    private static final ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
     @Getter
     private static Database database;
     @Getter
@@ -21,6 +26,8 @@ public class App {
     private static MessageRepository messageRepository;
     @Getter
     private static AuthRepository authRepository;
+    @Getter
+    private static ThemeRepository themeRepository;
     @Getter
     private static DreamChatServer server;
 
@@ -41,6 +48,9 @@ public class App {
 
         Logger.LOGGER.info("Initialize auth user data repository...");
         authRepository = new AuthRepository();
+
+        Logger.LOGGER.info("Initialize theme repository...");
+//        themeRepository = new ThemeRepository();
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             Logger.LOGGER.info("Stopping server... Saving data...");

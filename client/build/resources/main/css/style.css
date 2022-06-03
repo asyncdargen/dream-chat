@@ -352,9 +352,21 @@
     -fx-background-radius: 5px;
 }
 
+.theme-icon {
+    -fx-graphic: url('../image/theme_icon_16.png');
+    -fx-background-color: #19a1fd;
+    -fx-background-radius: 5px;
+}
+
 .lock-icon {
     -fx-graphic: url('../image/lock_icon_16.png');
     -fx-background-color: #34b904;
+    -fx-background-radius: 5px;
+}
+
+.logout-icon {
+    -fx-graphic: url('../image/logout_icon_16.png');
+    -fx-background-color: #ff2f2f;
     -fx-background-radius: 5px;
 }
 

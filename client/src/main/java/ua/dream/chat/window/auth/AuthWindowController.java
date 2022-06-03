@@ -1,5 +1,6 @@
 package ua.dream.chat.window.auth;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -8,6 +9,8 @@ import lombok.val;
 import ua.dream.chat.App;
 import ua.dream.chat.packet.auth.PacketAuthorize;
 import ua.dream.chat.packet.auth.PacketAuthorizeResponse;
+import ua.dream.chat.util.Base64Util;
+import ua.dream.chat.util.LocalUtil;
 import ua.dream.chat.util.References;
 import ua.dream.chat.util.logger.Logger;
 import ua.dream.chat.window.WindowController;
@@ -25,7 +28,7 @@ public class AuthWindowController extends WindowController {
     private Label statusLabel;
 
     @FXML
-    public void authorize() throws IOException {
+    public boolean authorize() {
         String email = emailField.getText();
         String password = passwordField.getText();
 
@@ -46,12 +49,55 @@ public class AuthWindowController extends WindowController {
                 else {
                     App.getUserRepository().setSelfId(response.getId());
                     Logger.LOGGER.info("Successful login!");
+                    saveSessionFromFields();
                     App.MAIN_WINDOW.showAsMainStage();
+                    return true;
                 }
             } catch (Throwable t) {
                 t.printStackTrace();
                 statusLabel.setText("Error while authorize.");
             }
         }
+
+        return false;
     }
+
+    @Override
+    public void handleOpen() {
+        if (App.getUserRepository().getSelfId() != 0 || !App.getClient().getClient().isActive()) return;
+
+        val encoded = LocalUtil.getStringContent(".session");
+
+        if (encoded == null) return;
+
+        val sessionData = Base64Util.decodeString(encoded);
+        val sessionArgs = sessionData.split(":");
+
+        if (sessionArgs.length != 2) return;
+
+        val login = Base64Util.decodeString(sessionArgs[0]);
+        val password = Base64Util.decodeString(sessionArgs[1]);
+
+        emailField.setText(login);
+        passwordField.setText(password);
+
+        Platform.runLater(this::authorize);
+    }
+
+    public void saveSessionFromFields() {
+        val login = Base64Util.encodeString(emailField.getText());
+        val password = Base64Util.encodeString(passwordField.getText());
+
+        val session = String.format("%s:%s", login, password);
+        val encoded = Base64Util.encodeString(session);
+
+        LocalUtil.setContent(".session", writer -> {
+            try {
+                writer.write(encoded);
+            } catch (IOException e) {
+
+            }
+        });
+    }
+
 }

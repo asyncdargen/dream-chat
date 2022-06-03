@@ -39,6 +39,14 @@ public class DreamChatServer {
             }
         });
 
+//        handlers.onConnect(remote -> {
+//            App.getExecutor().schedule(() -> {
+//                if (remote.isActive())
+//                    remote.write(new PacketAllThemes(App.getThemeRepository().getCache()));
+//            }, 1, TimeUnit.SECONDS);
+//            return true;
+//        });
+
         registry.registerFromCurrentJar();
 
         client.bind(References.SERVER_PORT).await(15, TimeUnit.SECONDS);

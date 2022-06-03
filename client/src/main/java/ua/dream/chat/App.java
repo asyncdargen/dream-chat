@@ -52,6 +52,7 @@ public class App extends Application {
     private static Stage modalStage;
 
     public void start(Stage stage) throws Exception {
+
         LOGGER.info("Starting DreamChat application..");
 
         LOGGER.info("Creating connection...");
@@ -73,6 +74,8 @@ public class App extends Application {
         mainStage.setTitle("DreamChat");
         START_WINDOW.showAsMainStage();
         mainStage.getIcons().add(new Image(ResourceUtil.getImageResourceURL("icon.png").openStream()));
+
+//        LocalSettings.updateStyles();
     }
 
     public static void switchMainStageTo(Window<?> window) {

@@ -61,25 +61,25 @@ public class MessageRepository {
         val future = cached != null
                 ? CompletableFuture.completedFuture(cached)
                 : App.getDatabase().queryAsync(
-                            "SELECT * FROM `user_messages` WHERE (`fromUserId`=? AND `toUserId`=?) OR (`toUserId`=? AND `fromUserId`=?) ORDER BY `timestamp` ASC LIMIT 100",
-                            toUserId, fromUserId, toUserId, fromUserId
-                    ).thenApply(resultSet -> {
-                        val messages = new EstimatedSizeList<Message>();
-                        try {
-                            while (resultSet.next())
-                                messages.add(new Message(
-                                        resultSet.getLong("id"),
-                                        resultSet.getLong("fromUserId"),
-                                        resultSet.getLong("toUserId"),
-                                        resultSet.getLong("timestamp"),
-                                        resultSet.getString("message")
-                                ));
-                        } catch (Throwable t) {
-                            t.printStackTrace();
-                        }
+                "SELECT * FROM `user_messages` WHERE (`fromUserId`=? AND `toUserId`=?) OR (`toUserId`=? AND `fromUserId`=?) ORDER BY `timestamp` ASC LIMIT 100",
+                toUserId, fromUserId, toUserId, fromUserId
+        ).thenApply(resultSet -> {
+            val messages = new EstimatedSizeList<Message>();
+            try {
+                while (resultSet.next())
+                    messages.add(new Message(
+                            resultSet.getLong("id"),
+                            resultSet.getLong("fromUserId"),
+                            resultSet.getLong("toUserId"),
+                            resultSet.getLong("timestamp"),
+                            resultSet.getString("message")
+                    ));
+            } catch (Throwable t) {
+                t.printStackTrace();
+            }
 
-                        return messages;
-                    });
+            return messages;
+        });
 
         future.thenAccept(messages ->
                 cache.asMap().computeIfAbsent(toUserId, __ -> new ConcurrentHashMap<>()).put(fromUserId, messages)

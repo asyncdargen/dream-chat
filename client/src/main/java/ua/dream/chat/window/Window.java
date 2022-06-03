@@ -47,4 +47,9 @@ public class Window<C extends WindowController> {
         App.switchModalStageTo(this);
     }
 
+    public void settingStyle() {
+        scene.getRoot().setStyle("");
+        scene.getRoot().applyCss();
+    }
+
 }

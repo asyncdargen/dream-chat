@@ -36,7 +36,7 @@ public class UserRepository {
                         + "), `avatar` LONGTEXT NULL DEFAULT NULL, `chats_ids` TEXT);"
         );
 
-        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(() -> saveAll(true), 5, 5, TimeUnit.MINUTES);
+        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(() -> saveAll(true), 10, 10, TimeUnit.SECONDS);
 
         App.getServer().getRegistry().registerHandler(PacketUserUpdateName.class, (packet, remote, __) -> {
             val user = App.getServer().getUser(remote);
@@ -163,12 +163,16 @@ public class UserRepository {
     }
 
     public void saveAll(boolean sync) {
-        cache.asMap().values().forEach(user -> {
-            val query = "UPDATE `user_data` SET `name`=?, `avatar`=?, `chats_ids`=? WHERE `id`=?;";
+        try {
+            cache.asMap().values().forEach(user -> {
+                val query = "UPDATE `user_data` SET `name`=?, `avatar`=?, `chats_ids`=? WHERE `id`=?;";
 
-            if (sync) App.getDatabase().update(query, user.getName(), user.getAvatar().getEncoded(), chatsIdsAdapter.toJson(user.getChatsIds()), user.getId());
-            else App.getDatabase().updateAsync(query, user.getName(), user.getAvatar().getEncoded(), chatsIdsAdapter.toJson(user.getChatsIds()), user.getId());
-        });
+                if (sync) App.getDatabase().update(query, user.getName(), user.getAvatar().getEncoded(), chatsIdsAdapter.toJson(user.getChatsIds()), user.getId());
+                else App.getDatabase().updateAsync(query, user.getName(), user.getAvatar().getEncoded(), chatsIdsAdapter.toJson(user.getChatsIds()), user.getId());
+            });
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
     }
 
 }

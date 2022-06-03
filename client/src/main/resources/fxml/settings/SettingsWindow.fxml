@@ -71,6 +71,18 @@
                 </Button>
                 <Label text="Edit Avatar"/>
             </HBox>
+            <HBox onMouseClicked="#changeTheme" styleClass="line-button">
+                <opaqueInsets>
+                    <Insets/>
+                </opaqueInsets>
+                <Button mnemonicParsing="false">
+                    <styleClass>
+                        <String fx:value="icon-button"/>
+                        <String fx:value="theme-icon"/>
+                    </styleClass>
+                </Button>
+                <Label text="Edit Avatar"/>
+            </HBox>
             <HBox onMouseClicked="#changePassword" styleClass="line-button">
                 <opaqueInsets>
                     <Insets/>
@@ -109,6 +121,18 @@
                     </styleClass>
                 </Button>
                 <Label text="DreamChat Features"/>
+            </HBox>
+            <HBox onMouseClicked="#logout" styleClass="line-button">
+                <opaqueInsets>
+                    <Insets/>
+                </opaqueInsets>
+                <Button mnemonicParsing="false">
+                    <styleClass>
+                        <String fx:value="icon-button"/>
+                        <String fx:value="logout-icon"/>
+                    </styleClass>
+                </Button>
+                <Label text="Logout"/>
             </HBox>
         </VBox>
     </VBox>

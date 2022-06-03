@@ -35,8 +35,10 @@ public class SettingsMenuController extends WindowController {
     public boolean closeDialogs() {
         val opened = App.CHANGE_AVATAR_DIALOG.isShowing()
                 || App.CHANGE_NAME_DIALOG.isShowing()
-                || App.CHANGE_PASSWORD_DIALOG.isShowing();
+                || App.CHANGE_PASSWORD_DIALOG.isShowing()
+                || App.CHANGE_AVATAR_DIALOG.isShowing();
 
+        App.CHANGE_AVATAR_DIALOG.getController().cancel();
         App.CHANGE_NAME_DIALOG.getController().cancel();
         App.CHANGE_PASSWORD_DIALOG.getController().cancel();
         App.CHANGE_AVATAR_DIALOG.getController().cancel();
@@ -97,4 +99,15 @@ public class SettingsMenuController extends WindowController {
         }
     }
 
+    public void logout() {
+        App.getClient().reconnect();
+        App.AUTH_WINDOW.showAsMainStage();
+        App.getUserRepository().setSelfId(0);
+    }
+
+    public void changeTheme() {
+        blockWindow();
+
+
+    }
 }

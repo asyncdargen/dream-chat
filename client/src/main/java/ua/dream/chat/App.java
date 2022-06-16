@@ -11,6 +11,7 @@ import lombok.Setter;
 import ua.dream.chat.client.DreamChatClient;
 import ua.dream.chat.repository.MessageRepository;
 import ua.dream.chat.repository.UserRepository;
+import ua.dream.chat.util.LocalSettings;
 import ua.dream.chat.util.ResourceUtil;
 import ua.dream.chat.window.DialogWindow;
 import ua.dream.chat.window.Window;
@@ -18,10 +19,7 @@ import ua.dream.chat.window.auth.AuthWindowController;
 import ua.dream.chat.window.auth.StartWindowController;
 import ua.dream.chat.window.main.MainWindowController;
 import ua.dream.chat.window.main.SearchProfileDialogController;
-import ua.dream.chat.window.settings.ChangeAvatarDialogController;
-import ua.dream.chat.window.settings.ChangeNameDialogController;
-import ua.dream.chat.window.settings.ChangePasswordDialogController;
-import ua.dream.chat.window.settings.SettingsMenuController;
+import ua.dream.chat.window.settings.*;
 
 import static ua.dream.chat.util.logger.Logger.LOGGER;
 import static ua.dream.chat.window.Window.create;
@@ -37,6 +35,7 @@ public class App extends Application {
     public static final DialogWindow<ChangeNameDialogController> CHANGE_NAME_DIALOG = new ChangeNameDialogController();
     public static final DialogWindow<ChangePasswordDialogController> CHANGE_PASSWORD_DIALOG = new ChangePasswordDialogController();
     public static final DialogWindow<ChangeAvatarDialogController> CHANGE_AVATAR_DIALOG = new ChangeAvatarDialogController();
+    public static final DialogWindow<ChangeThemeDialogController> CHANGE_THEME_DIALOG = new ChangeThemeDialogController();
 
     @Getter
     private static DreamChatClient client;
@@ -75,7 +74,7 @@ public class App extends Application {
         START_WINDOW.showAsMainStage();
         mainStage.getIcons().add(new Image(ResourceUtil.getImageResourceURL("icon.png").openStream()));
 
-//        LocalSettings.updateStyles();
+        LocalSettings.updateStyles();
     }
 
     public static void switchMainStageTo(Window<?> window) {

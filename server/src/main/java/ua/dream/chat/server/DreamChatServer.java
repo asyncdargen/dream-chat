@@ -38,7 +38,6 @@ public class DreamChatServer {
                 Logger.LOGGER.info("User " + user.getName() + " (" + userId + ") disconnected.");
             }
         });
-
 //        handlers.onConnect(remote -> {
 //            App.getExecutor().schedule(() -> {
 //                if (remote.isActive())

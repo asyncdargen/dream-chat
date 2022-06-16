@@ -81,7 +81,7 @@
                         <String fx:value="theme-icon"/>
                     </styleClass>
                 </Button>
-                <Label text="Edit Avatar"/>
+                <Label text="Edit Theme"/>
             </HBox>
             <HBox onMouseClicked="#changePassword" styleClass="line-button">
                 <opaqueInsets>

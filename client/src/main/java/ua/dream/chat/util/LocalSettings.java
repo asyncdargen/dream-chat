@@ -2,9 +2,11 @@ package ua.dream.chat.util;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.experimental.UtilityClass;
+import lombok.val;
 import ua.dream.chat.App;
-import ua.dream.chat.model.Theme;
 import ua.dream.chat.window.Window;
 
 import java.io.IOException;
@@ -17,17 +19,6 @@ import java.util.stream.Collectors;
 public class LocalSettings {
 
     public String FILE = "settings.dat";
-    public Theme DEFAULT_THEME = new Theme("default", new String[]{"-bg-primary-color: #782b78;",
-            "-bg-primary-hover-color: #10449D;",
-            "-bg-primary-selected-color: #3F1F85;",
-            "-bg-secondary-color: #200e20;",
-            "-bg-secondary2-color: #2b172b;",
-            "-bg-secondary2-hover-color: #372037;",
-            "-font-primary-color: #EEEEEE;",
-            "-font-secondary-color: #72879B;",
-            "-font-secondary-hover-color: #B3B5B7;"
-    });
-    public Map<String, Theme> THEMES = new ConcurrentHashMap<>();
     public Map<String, String> SETTINGS;
 
     static {
@@ -55,20 +46,28 @@ public class LocalSettings {
         });
     }
 
+    public void setCurrentTheme(Theme theme) {
+        SETTINGS.put("theme", theme.name());
+        saveSettings();
+        updateStyles();
+    }
+
     public String currentThemeName() {
-        return SETTINGS.getOrDefault("theme", "default");
+        return SETTINGS.getOrDefault("theme", "DEFAULT");
     }
 
     public Theme getThemeByName(String name) {
-        return THEMES.get(name);
+        return Theme.valueOf(name.toUpperCase());
     }
 
     public Theme currentTheme() {
-        return THEMES.getOrDefault(currentThemeName(), DEFAULT_THEME);
+        return getThemeByName(currentThemeName());
     }
 
     public void applyStyles(Parent parent) {
-        Arrays.stream(currentTheme().getStyle()).forEach(parent::setStyle);
+        val stylesheets = parent.getStylesheets();
+        stylesheets.clear();
+        stylesheets.add(currentTheme().getExternal());
         parent.applyCss();
     }
 
@@ -95,5 +94,23 @@ public class LocalSettings {
 
         saveSettings();
     }
+
+    @Getter
+    @RequiredArgsConstructor
+    public static enum Theme {
+
+        DEFAULT("Default", "style.css"),
+        FIRST("First", "first.css"),
+        ;
+
+        private final String name;
+        private final String resource;
+
+        public String getExternal() {
+            return ResourceUtil.getCSSResourceURL(resource).toExternalForm();
+        }
+
+    }
+
 
 }

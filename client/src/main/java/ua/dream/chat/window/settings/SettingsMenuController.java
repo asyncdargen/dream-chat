@@ -36,12 +36,13 @@ public class SettingsMenuController extends WindowController {
         val opened = App.CHANGE_AVATAR_DIALOG.isShowing()
                 || App.CHANGE_NAME_DIALOG.isShowing()
                 || App.CHANGE_PASSWORD_DIALOG.isShowing()
-                || App.CHANGE_AVATAR_DIALOG.isShowing();
+                || App.CHANGE_AVATAR_DIALOG.isShowing()
+                || App.CHANGE_THEME_DIALOG.isShowing();
 
         App.CHANGE_AVATAR_DIALOG.getController().cancel();
         App.CHANGE_NAME_DIALOG.getController().cancel();
         App.CHANGE_PASSWORD_DIALOG.getController().cancel();
-        App.CHANGE_AVATAR_DIALOG.getController().cancel();
+        App.CHANGE_THEME_DIALOG.getController().cancel();
 
         return opened;
     }
@@ -59,6 +60,12 @@ public class SettingsMenuController extends WindowController {
         blockWindow();
 
         App.CHANGE_NAME_DIALOG.showOnTopStage();
+    }
+
+    public void changeTheme() {
+        blockWindow();
+
+        App.CHANGE_THEME_DIALOG.showOnTopStage();
     }
 
     @FXML
@@ -103,11 +110,5 @@ public class SettingsMenuController extends WindowController {
         App.getClient().reconnect();
         App.AUTH_WINDOW.showAsMainStage();
         App.getUserRepository().setSelfId(0);
-    }
-
-    public void changeTheme() {
-        blockWindow();
-
-
     }
 }

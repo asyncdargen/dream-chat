@@ -1,0 +1,383 @@
+/********************************
+    Root
+********************************/
+
+.root {
+    -bg-primary-color: #182b78;
+    -bg-primary-hover-color: #00449D;
+    -bg-primary-selected-color: #3F1F85;
+    -bg-secondary-color: #200e20;
+    -bg-secondary2-color: #2b172b;
+    -bg-secondary2-hover-color: #172037;
+    -font-primary-color: #EEEEEE;
+    -font-secondary-color: #72879B;
+    -font-secondary-hover-color: #43B5B7;
+}
+
+/********************************
+    Main Window
+********************************/
+
+.icon-wrapper {
+    -fx-background-color: -bg-primary-color;
+}
+
+.main-window {
+    -fx-background-color: -bg-secondary-color
+}
+
+.main-window .label {
+    -fx-text-fill: -font-secondary-color;
+}
+
+.main-window .title {
+    -fx-font-size: 2.25em;
+    -fx-text-fill: -font-primary-color;
+}
+
+.submit-button {
+    -fx-font-size: 1.5em;
+    -fx-font-weight: bold;
+    -fx-text-fill: -font-primary-color;
+    -fx-padding: 1em 5em;
+    -fx-background-color: -bg-primary-color;
+    -fx-background-radius: 10px;
+}
+
+.submit-button:hover {
+    -fx-background-color: -bg-primary-hover-color;
+}
+
+.main-window .text-field {
+    -fx-font-size: 1.5em;
+    -fx-text-fill: -font-primary-color;
+    -fx-prompt-text-fill: -font-secondary-color;
+    -fx-pref-width: 20em;
+    -fx-max-width: 20em;
+    -fx-background-color: transparent;
+    -fx-border-color: -bg-primary-color;
+    -fx-border-width: 0 0 1px 0;
+    -fx-padding: 0.5em 0.5em 0 0.5em;
+}
+
+/********************************
+    Split Pane
+********************************/
+
+.split-pane,
+.split-pane-divider {
+    -fx-padding: 0;
+}
+
+/********************************
+    Contacts Panel
+********************************/
+
+.contacts-panel,
+.contacts-panel .list-view {
+    -fx-background-color: -bg-secondary2-color;
+}
+
+.list-cell {
+    -fx-background-color: -bg-secondary2-color;
+    -fx-padding: 0;
+}
+
+.chat-data {
+    -fx-background-color: -bg-secondary2-color;
+}
+
+.chat-data:hover  {
+    -fx-background-color: -bg-secondary2-hover-color;
+}
+
+.chat-data .label {
+    -fx-text-fill: white;
+    -fx-font-size: 1.25em;
+    -fx-font-weight: 600;
+}
+
+.list-cell:selected .chat-data {
+    -fx-background-color: -bg-primary-color;
+}
+
+/********************************
+    Messages Panel
+********************************/
+
+.messages-panel,
+.messages-panel .list-view,
+.messages-panel .list-view .list-cell {
+    -fx-background-color: -bg-secondary-color;
+}
+
+.messages-panel .text-field {
+    -fx-background-color: -bg-primary-color;
+    -fx-background-radius: 0;
+    -fx-border-color: -bg-secondary-color;
+    -fx-border-width: 0 1px;
+    -fx-padding: 1em;
+    -fx-text-fill: -font-primary-color;
+    -fx-prompt-text-fill: -font-secondary-color;
+}
+
+.messages-panel .list-view .list-cell {
+    -fx-padding: 0.5em;
+}
+
+.message-block {
+    -fx-background-color: -bg-secondary2-hover-color;
+    -fx-background-radius: 10px;
+    -fx-padding: 0.5em 1em;
+    -fx-spacing: 0.5em;
+    -fx-text-fill: -font-primary-color;
+}
+
+.message-block.my-message {
+    -fx-background-color: -bg-primary-color;
+}
+
+.message-block .message {
+    -fx-text-fill: -font-primary-color;
+}
+
+.message-block .date {
+    -fx-text-fill: -font-secondary-color;
+}
+
+/********************************
+    Pretty List View
+    https://dlsc.com/2017/09/07/javafx-tip-28-pretty-list-view/
+********************************/
+
+.pretty-list-view > .virtual-flow > .scroll-bar,
+.pretty-list-view > .virtual-flow > .scroll-bar .decrement-arrow,
+.pretty-list-view > .virtual-flow > .scroll-bar .increment-arrow,
+.pretty-list-view > .virtual-flow > .scroll-bar .decrement-button,
+.pretty-list-view > .virtual-flow > .scroll-bar .increment-button {
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
+}
+
+.pretty-list-view .pretty-scroll-bar:vertical .thumb {
+    -fx-background-insets: 0 2 0 0;
+}
+
+.pretty-list-view .pretty-scroll-bar:horizontal .thumb {
+    -fx-background-insets: 0 0 2 0;
+}
+
+.pretty-list-view .pretty-scroll-bar .decrement-arrow,
+.pretty-list-view .pretty-scroll-bar .increment-arrow {
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
+}
+
+.pretty-list-view .pretty-scroll-bar {
+    -fx-background-color: transparent;
+    -fx-pref-width: 12;
+    -fx-pref-height: 12;
+    -fx-padding: 2;
+}
+
+.pretty-list-view .pretty-scroll-bar .thumb {
+    -fx-background-color: rgba(0, 0, 0, .2);
+    -fx-background-radius: 1000;
+    -fx-pref-width: 12;
+    -fx-pref-height: 12;
+}
+
+/********************************
+    Settings Window
+********************************/
+
+.settings-window {
+    -fx-spacing: 1em;
+    -fx-padding: 0 2em 1em 2em;
+    -fx-background-radius: 15px;
+}
+
+.settings-window .separator {
+    -fx-padding: 0.5em -2.1em;
+}
+
+.settings-window .separator .line {
+    -fx-pref-height: 1em;
+    -fx-background-color: -bg-primary-color;
+    -fx-border-color: null;
+}
+
+/********************************
+    Title Bar
+********************************/
+
+.title-bar {
+    -fx-padding: 0.5em 0 0 0;
+}
+
+.title-bar .title {
+    -fx-font-size: 1.4em;
+    -fx-text-fill: -font-primary-color;
+}
+
+/********************************
+    User Panel
+********************************/
+
+.user-panel {
+    -fx-spacing: 1em;
+}
+
+.user-panel .label {
+    -fx-padding: 0.12em;
+    -fx-text-fill: -font-primary-color;
+}
+
+/********************************
+    Line Button
+********************************/
+
+.line-buttons-wrapper {
+    -fx-padding: 0 -2.1em;
+}
+
+.line-button {
+    -fx-padding: 0.5em 2.1em;
+    -fx-spacing: 1em;
+    -fx-alignment: center-left;
+    -fx-cursor: hand;
+}
+
+.line-button .label {
+    -fx-text-fill: -font-primary-color;
+}
+
+.line-button:hover {
+    -fx-background-color: -bg-primary-color;
+}
+
+/********************************
+    Edit Window
+********************************/
+
+.edit-window {
+    -fx-background-color: -bg-secondary-color;
+    -fx-background-radius: 15px;
+    -fx-padding: 1em;
+    -fx-spacing: 1em;
+}
+
+.edit-window .text-field {
+    -fx-background-color: transparent;
+    -fx-border-color: -bg-primary-color;
+    -fx-border-width: 0 0 2 0;
+    -fx-text-fill: -font-primary-color;
+    -fx-padding: 0;
+}
+
+.edit-window .button {
+    -fx-padding: 0.5em 1em;
+    -fx-background-color: transparent;
+    -fx-background-radius: 5px;
+    -fx-text-fill: -font-secondary-color;
+    -fx-font-size: 1.1em;
+    -fx-font-weight: bold;
+}
+
+.edit-window .button:hover {
+    -fx-background-color: -bg-primary-color;
+}
+
+.for-label {
+    -fx-text-fill: -font-primary-color;
+    -fx-font-size: 0.9em;
+    -fx-font-weight: bold;
+}
+
+
+/********************************
+    Blocking Pane
+********************************/
+
+.blocking-pane {
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+}
+
+/********************************
+    Icon Buttons
+********************************/
+
+.icon-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0.5em;
+}
+
+.hamburger-icon {
+    -fx-graphic: url('../image/Hamburger_icon_16.png');
+}
+
+.hamburger-icon:hover {
+    -fx-graphic: url('../image/Hamburger_icon_hover_16.png');
+}
+
+.triple-dots-icon {
+    -fx-graphic: url('../image/triple_dots_icon_32.png');
+}
+
+.triple-dots-icon:hover {
+    -fx-graphic: url('../image/triple_dots_icon_hover_32.png');
+}
+
+.close-icon {
+    -fx-graphic: url('../image/close_icon_16.png');
+}
+
+.close-icon:hover {
+    -fx-graphic: url('../image/close_icon_hover_16.png');
+}
+
+.profile-icon {
+    -fx-graphic: url('../image/profile_icon_16.png');
+    -fx-background-color: #b9a704;
+    -fx-background-radius: 5px;
+}
+
+.profile-add-icon {
+    -fx-graphic: url('../image/profile_icon_16.png')
+}
+
+.avatar-icon {
+    -fx-graphic: url('../image/profile_icon_16.png');
+    -fx-background-color: #b9a704;
+    -fx-background-radius: 5px;
+}
+
+.theme-icon {
+    -fx-graphic: url('../image/theme_icon_16.png');
+    -fx-background-color: #19a1fd;
+    -fx-background-radius: 5px;
+}
+
+.lock-icon {
+    -fx-graphic: url('../image/lock_icon_16.png');
+    -fx-background-color: #34b904;
+    -fx-background-radius: 5px;
+}
+
+.logout-icon {
+    -fx-graphic: url('../image/logout_icon_16.png');
+    -fx-background-color: #ff2f2f;
+    -fx-background-radius: 5px;
+}
+
+.question-icon {
+    -fx-graphic: url('../image/question_icon_16.png');
+    -fx-background-color: #04a7bd;
+    -fx-background-radius: 5px;
+}
+
+.lightbulb-icon {
+    -fx-graphic: url('../image/lightbulb_icon_16.png');
+    -fx-background-color: #b9a704;
+    -fx-background-radius: 5px;
+}

@@ -8,8 +8,6 @@ import ru.dargen.fancy.handler.Handlers;
 import ru.dargen.fancy.packet.Packet;
 import ru.dargen.fancy.packet.callback.Callback;
 import ru.dargen.fancy.packet.registry.HandlerPacketRegistry;
-import ua.dream.chat.packet.theme.PacketAllThemes;
-import ua.dream.chat.util.LocalSettings;
 import ua.dream.chat.util.References;
 import ua.dream.chat.util.logger.Logger;
 
@@ -36,11 +34,6 @@ public class DreamChatClient {
         });
 
         registry.registerFromCurrentJar();
-
-        registry.registerHandler(PacketAllThemes.class, (packet, __, ___) -> {
-            LocalSettings.THEMES.putAll(packet.getThemes());
-//            LocalSettings.updateStyles();
-        });
 
         client.connect(References.SERVER_HOST, References.SERVER_PORT).await(15, TimeUnit.SECONDS);
     }
